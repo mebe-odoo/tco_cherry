@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cherry_test,cherry_test.cherry_test,model_cherry_test,,1,1,1,1
