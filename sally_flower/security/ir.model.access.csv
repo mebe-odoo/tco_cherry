@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sally_flower,sally_flower,model_sally_flower,base.group_user,1,1,1,1
+access_sally_flower_variant,sally_flower_variant,model_sally_flower_variant,base.group_user,1,1,1,1

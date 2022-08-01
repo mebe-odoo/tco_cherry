@@ -8,14 +8,15 @@
             <field name="model">cherry.test</field>
             <field name="arch" type="xml">
                 <tree string="Cherry Test">
-                    <field name="name"/>
-                    <field name="age"/>
+                    <field name="name" string="Name New 2"/>
+                    <field name="age" invisible="1"/>
                     <field name="birth_date"/>
+                    <field name="amount_monetary" optional="hide"/>
                 </tree>
             </field>
         </record>
 
-        <!-- FORM VIEW -->
+        <!-- FORM VIEW 1 -->
         <record id="cherry_test_form" model="ir.ui.view">
             <field name="name">cherry.test.form</field>
             <field name="model">cherry.test</field>
@@ -25,6 +26,11 @@
                         <button name="action_test_transactions" type="object" string="Test Transactions"/>
                     </header>
                     <sheet>
+                        <div class="oe_title">
+                            <h1 class="text-primary">
+                                Form View #1
+                            </h1>
+                        </div>
                         <group>
                             <group>
                                 <field name="name"/>
@@ -40,14 +46,84 @@
             </field>
         </record>
 
+        <!-- FORM VIEW 2 -->
+        <record id="cherry_test_form2" model="ir.ui.view">
+            <field name="name">cherry.test.form</field>
+            <field name="model">cherry.test</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <form string="Cherry Test">
+                    <header>
+                        <button name="action_test_transactions" type="object" string="Test Transactions"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1 class="text-success">
+                                Form View #2
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="age"/>
+                                <field name="partner_id" readonly="0"/>
+                            </group>
+                            <group>
+                                <field name="currency_id"/>
+                                <field name="amount_monetary"/>
+                                <field name="is_blue"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- BONUS: Search View -->
+        <record id="cherry_test_search" model="ir.ui.view">
+            <field name="name">cherry.test.search</field>
+            <field name="model">cherry.test</field>
+            <field name="arch" type="xml">
+                <search string="Cherry Test">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="currency_id"/>
+                    <field name="age"/>
+                    <field name="is_blue" invisible="1"/>
+                    <filter string="Blue" name="is_blue" domain="[('is_blue','=',True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Partner" name="groupby_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Blue" name="groupby_is_blue" domain="[]" context="{'group_by': 'is_blue'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <!-- ACTION -->
         <record id="action_cherry_test" model="ir.actions.act_window">
             <field name="name">Cherry Test</field>
             <field name="res_model">cherry.test</field>
+            <field name="domain">[]</field>
+            <field name="context">{
+                    'search_default_is_blue': 1
+                }</field>
+            <field name="search_view_id" ref="cherry_test_search"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('cherry_test_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('cherry_test_form2')})
+            ]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create new asset
+                </p>
+            </field>
         </record>
 
         <!-- MENU ITEM -->
-        <menuitem id="cherry_test_action" action="action_cherry_test"/>
+        <menuitem id="cherry_test_action" name="Cherry" action="action_cherry_test"/>
+
+        <menuitem id="cherry_test_action_menu1" name="Menu 1" parent="cherry_test_action" action="action_cherry_test"/>
+        <menuitem id="cherry_test_action_menu2" name="Menu 2" parent="cherry_test_action" action="action_cherry_test"/>
 
     </data>
 </odoo>
