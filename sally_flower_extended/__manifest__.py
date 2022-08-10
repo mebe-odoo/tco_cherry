@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Sally Flower",
+    'name': "Sally Flower Extended",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,12 +20,9 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website'],
+    'depends': ['base', 'website', 'sally_flower'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
-        'views/sally_flower_views.xml',
-        'views/res_partner_views.xml'
     ],
 }

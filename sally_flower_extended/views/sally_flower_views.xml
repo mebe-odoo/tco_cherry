@@ -8,6 +8,10 @@
             <field name="arch" type="xml">
                 <form string="Sally Flower">
                     <sheet>
+                        <div name="button_box" position="inside">
+                            <field name="is_published" widget="website_redirect_button"/>
+                        </div>
+                        <field name="image_256" widget="image" class="oe_avatar" readonly="0"/>
                         <group>
                             <group>
                                 <field name="common_name"/>   
@@ -21,62 +25,11 @@
                             </group>
                         </group>
                         <group>
-                            <field name="partner_id"/>
-                            <field name="email"/>
+                            <field name="caretaker_id"/>
                         </group>
-                        <notebook>
-                            <page string="Caretakers">
-                                <field name="partner_ids" context="{'created_from_embedded_views': True}">
-                                    <kanban>
-                                        <templates>
-                                            <t t-name="kanban-box">
-                                                <div class="oe_kanban_global_click">
-                                                    <div class="oe_kanban_details">
-                                                        <field name="name"/>
-                                                        <field name="email"/>
-                                                    </div>
-                                                </div>
-                                            </t>
-                                        </templates>
-                                    </kanban>
-                                    <form>
-                                        <sheet>
-                                            <group>
-                                                <group>
-                                                    <field name="name"/>
-                                                </group>
-                                                <group>
-                                                    <field name="email"/>
-                                                </group>
-                                            </group>
-                                        </sheet>
-                                    </form>
-                                </field>
-                            </page>
-                        </notebook>
                     </sheet>
                 </form>
             </field>
-        </record>
-
-        <record id="sally_flower_view_tree" model="ir.ui.view">
-            <field name="name">sally_flower_view_tree</field>
-            <field name="model">sally.flower</field>
-            <field name="arch" type="xml">
-                <tree string="Sally Flower">
-                    <field name="common_name"/>
-                    <field name="scientific_name"/>
-                    <field name="season_start_date" width="100px"/>
-                    <field name="season_end_date" width="100px"/>
-                    <field name="watering_frequency" optional="hide"/>
-                    <field name="watering_amount" optional="hide"/>
-                </tree>
-            </field>
-        </record>
-        
-        <record id="sally_flower_action" model="ir.actions.act_window">
-            <field name="name">Sally Flower</field>
-            <field name="res_model">sally.flower</field>
         </record>
 
         <record id="sally_flower_variant_view_form" model="ir.ui.view">
@@ -106,6 +59,21 @@
             </field>
         </record>
 
+        <record id="sally_flower_view_tree" model="ir.ui.view">
+            <field name="name">sally_flower_view_tree</field>
+            <field name="model">sally.flower</field>
+            <field name="arch" type="xml">
+                <tree string="Sally Flower">
+                    <field name="common_name"/>
+                    <field name="scientific_name"/>
+                    <field name="season_start_date" width="100px"/>
+                    <field name="season_end_date" width="100px"/>
+                    <field name="watering_frequency" optional="hide"/>
+                    <field name="watering_amount" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
         <record id="sally_flower_variant_view_tree" model="ir.ui.view">
             <field name="name">sally_flower_variant_view_tree</field>
             <field name="model">sally.flower.variant</field>
@@ -119,6 +87,11 @@
                     <field name="watering_amount" optional="hide"/>
                 </tree>
             </field>
+        </record>
+        
+        <record id="sally_flower_action" model="ir.actions.act_window">
+            <field name="name">Sally Flower</field>
+            <field name="res_model">sally.flower</field>
         </record>
 
         <record id="sally_flower_variant_action" model="ir.actions.act_window">

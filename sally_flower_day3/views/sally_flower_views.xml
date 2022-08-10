@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="sally_flower_view_form" model="ir.ui.view">
+            <field name="name">sally_flower_view_form</field>
+            <field name="model">sally.flower</field>
+            <field name="inherit_id" ref="sally_flower.sally_flower_view_form"/>
+            <field name="arch" type="xml">
+                <field name="common_name" position="before">
+                    <field name="name"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sally_flower_product_action" model="ir.actions.act_window">
+            <field name="name">Flowers</field>
+            <field name="res_model">product.product</field>
+            <field name="context">{'default_is_flower': True}</field>
+        </record>
+
+        <menuitem id="sally_flower_product" name="Flowers" parent="sale.product_menu_catalog"
+                  action="sally_flower_product_action"/>
+
+    </data>
+</odoo>

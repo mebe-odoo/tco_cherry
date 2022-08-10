@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="test">
+        <h1 t-if="show_header">Hello World</h1>
+        <t t-foreach="partner_ids" t-as="partner">
+            <h2>Partner: <t t-out="partner.name"/></h2>
+        </t>
+    </template>
+
+
+    <template id="test2" inherit_id="sally_flower_day3.test">
+        <xpath expr="//h1" position="after">
+            <p>This is a random paragraph!</p>
+        </xpath>
+    </template>
+
+</odoo>
