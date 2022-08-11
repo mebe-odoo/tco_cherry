@@ -20,10 +20,11 @@ class SallyFlower(models.Model):
     watering_frequency = fields.Integer("Watering Frequency")
     watering_amount = fields.Float("Watering Amount")
 
-    partner_id = fields.Many2one('res.partner', string='Caretaker', ondelete='restrict', domain=[('name', 'like', 'M%')], context={'default_email': 'test@test.com'})
+    partner_id = fields.Many2one('res.partner', string='Caretaker', ondelete='restrict', domain=[('name', 'like', 'M%')]
+                                 , context={'default_email': 'test@test.com'})
     email = fields.Char(related="partner_id.email")
 
-    partner_ids = fields.Many2many('res.partner', 'partner_flower_relation', 'flower_id', 'partner_id', limit=2)
+    partner_ids = fields.Many2many('res.partner', 'partner_flower_relation', 'flower_id', 'partner_id', limit=4)
 
     variant_ids = fields.One2many('sally.flower.variant', 'flower_id')
 

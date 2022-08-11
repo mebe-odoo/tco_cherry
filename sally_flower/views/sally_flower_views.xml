@@ -59,6 +59,64 @@
             </field>
         </record>
 
+<!--        <record id="sally_flower_view_form_2" model="ir.ui.view">-->
+<!--            <field name="name">sally_flower_view_form</field>-->
+<!--            <field name="model">sally.flower</field>-->
+<!--            <field name="priority">100</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Sally Flower">-->
+<!--                    <sheet>-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="common_name"/>-->
+<!--                                <field name="scientific_name"/>-->
+<!--                                <field name="season_start_date"/>-->
+<!--                                <field name="season_end_date"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="watering_frequency"/>-->
+<!--                                <field name="watering_amount"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="email"/>-->
+<!--                        </group>-->
+<!--                        <notebook>-->
+<!--                            <page string="Caretakers">-->
+<!--                                <field name="partner_ids" context="{'created_from_embedded_views': True}">-->
+<!--                                    <kanban>-->
+<!--                                        <templates>-->
+<!--                                            <t t-name="kanban-box">-->
+<!--                                                <div class="oe_kanban_global_click">-->
+<!--                                                    <div class="oe_kanban_details">-->
+<!--                                                        <field name="name"/>-->
+<!--                                                        <field name="email"/>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </t>-->
+<!--                                        </templates>-->
+<!--                                    </kanban>-->
+<!--                                    <form>-->
+<!--                                        <sheet>-->
+<!--                                            <group>-->
+<!--                                                <group>-->
+<!--                                                    <field name="name"/>-->
+<!--                                                </group>-->
+<!--                                                <group>-->
+<!--                                                    <field name="email"/>-->
+<!--                                                </group>-->
+<!--                                            </group>-->
+<!--                                        </sheet>-->
+<!--                                    </form>-->
+<!--                                </field>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
         <record id="sally_flower_view_tree" model="ir.ui.view">
             <field name="name">sally_flower_view_tree</field>
             <field name="model">sally.flower</field>

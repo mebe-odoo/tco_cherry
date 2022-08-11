@@ -8,7 +8,6 @@
         </t>
     </template>
 
-
     <template id="test2" inherit_id="sally_flower_day3.test">
         <xpath expr="//h1" position="after">
             <p>This is a random paragraph!</p>
