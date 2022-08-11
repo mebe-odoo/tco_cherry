@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_server_set_scientific_name" model="ir.actions.server">
+            <field name="name">Set Scientific Name</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_sally_flower" />
+            <field name="binding_model_id" ref="model_sally_flower" />
+            <field name="state">code</field>
+            <field name="code">records.server_action_set_scientific_name()</field>
+        </record>
+
+        <record id="action_server_show_caretakers" model="ir.actions.server">
+            <field name="name">Show Caretakers</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_sally_flower" />
+            <field name="binding_model_id" ref="model_sally_flower" />
+            <field name="state">code</field>
+            <field name="code">
+# First, get the caretakers set on the SELECTED flowers
+partner_ids = records.partner_ids
+# If no caretakers are found, return an error
+if not partner_ids:
+  raise UserError('Error: No caretakers are defined on the flowers!')
+# If no error is raised, simply return a window action for the res.partner model, that will display the records
+# that satisfy the provided domain, i.e: Partners that are caretakers for the selected flowers
+action = {
+  'type': 'ir.actions.act_window',
+  'name': 'Caretakers',
+  'res_model': 'res.partner',
+  'view_mode': 'tree,form',
+  'target': 'new',
+  'domain': [('id', 'in', partner_ids.ids)]
+}</field>
+        </record>
+
+    </data>
+</odoo>

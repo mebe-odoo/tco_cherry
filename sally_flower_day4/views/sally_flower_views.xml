@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_custom_xml" model="ir.actions.act_window">
+            <field name="name">Custom Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Partner
+                </p>
+            </field>
+        </record>
+
+        <record id="action_custom_url" model="ir.actions.act_url">
+            <field name="name">Redirect to Google</field>
+            <field name="url">https://google.com</field>
+            <field name="target">new</field>
+        </record>
+        
+        <record id="sally_flower_view_form" model="ir.ui.view">
+            <field name="name">sally_flower_view_form</field>
+            <field name="model">sally.flower</field>
+            <field name="inherit_id" ref="sally_flower.sally_flower_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group" position="before">
+
+                    <div class="oe_button_box" name="button_box">
+                        <!-- A button that calls an action from the python side -->
+                        <button name="action_custom_python"
+                                string="Action (Python)"
+                                icon="fa-flag"
+                                class="oe_stat_button"
+                                type="object"/>
+
+                        <!-- A button that calls an action from the xml side -->
+                        <button name="%(action_custom_xml)d"
+                                string="Action (XML)"
+                                icon="fa-archive"
+                                class="oe_stat_button"
+                                type="action"/>
+
+                        <!-- A button that calls a url action from Python side -->
+                        <button name="action_custom_url"
+                                string="URL (Python)"
+                                icon="fa-external-link"
+                                class="oe_stat_button"
+                                type="object"/>
+
+                        <!-- A button that calls a url action from XML side -->
+                        <button name="%(action_custom_url)d"
+                                string="URL (XML)"
+                                icon="fa-external-link"
+                                class="oe_stat_button"
+                                type="action"/>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
