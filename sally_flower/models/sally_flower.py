@@ -12,7 +12,7 @@ class SallyFlower(models.Model):
     product_id = fields.Many2one('product.product', string="Product")
 
     common_name = fields.Char("Common Name", required=True)
-    scientific_name = fields.Char("Scientific Name", require=True)
+    scientific_name = fields.Char("Scientific Name", required=True)
 
     season_start_date = fields.Date("Season Start Date")
     season_end_date = fields.Date("Season End Date")

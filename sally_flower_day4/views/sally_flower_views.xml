@@ -57,8 +57,35 @@
                                 class="oe_stat_button"
                                 type="action"/>
                     </div>
-
+                    <h1 class="alert alert-success" role="alert">
+                        <field name="cron_message"/>
+                        <br/>
+                        <field name="full_name"/>
+                    </h1>
                 </xpath>
+            </field>
+        </record>
+
+        <record id="sally_flower_view_tree" model="ir.ui.view">
+            <field name="name">sally_flower_view_tree</field>
+            <field name="model">sally.flower</field>
+            <field name="inherit_id" ref="sally_flower.sally_flower_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='common_name']" position="after">
+                    <field name="full_name"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sally_flower_view_search" model="ir.ui.view">
+            <field name="name">sally_flower_view_search</field>
+            <field name="model">sally.flower</field>
+            <field name="arch" type="xml">
+                <search string="Sally Flower">
+                    <field name="common_name"/>
+                    <field name="scientific_name"/>
+<!--                    <filter name="filter_date_today" string="Today" domain="[('date_today', '!=', False)]"/>-->
+                </search>
             </field>
         </record>
 
