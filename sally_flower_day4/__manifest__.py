@@ -27,5 +27,6 @@
         'views/sally_flower_views.xml',
         'data/ir_actions_server.xml',
         'data/ir_cron.xml',
+        'data/sally_flower.xml',
     ]
 }

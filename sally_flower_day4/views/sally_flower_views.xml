@@ -63,6 +63,18 @@
                         <field name="full_name"/>
                     </h1>
                 </xpath>
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </xpath>
+                <field name="partner_ids" position="replace">
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                </field>
             </field>
         </record>
 

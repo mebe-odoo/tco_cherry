@@ -35,5 +35,28 @@ action = {
 }</field>
         </record>
 
+
+        <record id="action_server_post_message" model="ir.actions.server">
+            <field name="name">Model Methods</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_sally_flower" />
+            <field name="binding_model_id" ref="model_sally_flower" />
+            <field name="state">code</field>
+            <field name="code">
+                records.test_model_methods()
+            </field>
+        </record>
+
+        <record id="action_server_magic_numbers" model="ir.actions.server">
+            <field name="name">Magic Numbers</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_sally_flower" />
+            <field name="binding_model_id" ref="model_sally_flower" />
+            <field name="state">code</field>
+            <field name="code">
+                records.test_magic_numbers()
+            </field>
+        </record>
+
     </data>
 </odoo>
