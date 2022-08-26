@@ -8,6 +8,11 @@
             <field name="arch" type="xml">
                 <form string="Sally Flower">
                     <sheet>
+                        <div class="oe_button_box">
+                            <button icon="fa-flag" groups="sally_flower.group_flower_special">
+                                Special Button
+                            </button>
+                        </div>
                         <group>
                             <group>
                                 <field name="common_name"/>   
@@ -56,6 +61,19 @@
                         </notebook>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record id="sally_flower_view_form_special" model="ir.ui.view">
+            <field name="name">sally_flower_view_form_special</field>
+            <field name="model">sally.flower</field>
+            <field name="inherit_id" ref="sally_flower.sally_flower_view_form"/>
+            <field name="groups_id" eval="[(4, ref('sally_flower.group_flower_special'))]"/>
+            <field name="mode">extension</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/*" position="before">
+                    <h1>SPECIAL</h1>
+                </xpath>
             </field>
         </record>
 
@@ -138,10 +156,6 @@
             <field name="res_model">sally.flower</field>
             <field name="domain">[]</field>
             <field name="context">{'default_name': 'Test 20'}</field>
-            <field name="partner_ids" eval="[
-                (5, 0, 0),
-                (0, 0, {'name': 'Mohamed Ali', 'email': 'mohamed@smith.com'})
-            ]"/>
         </record>
 
         <record id="sally_flower_variant_view_form" model="ir.ui.view">
@@ -192,7 +206,7 @@
         </record>
 
         <menuitem id="sally_flower_root" name="Sally Flower" action="sally_flower_action"/>
-        <menuitem id="sally_flower_variants" parent="sally_flower_root" name="Variants"
+        <menuitem id="sally_flower_variants" parent="sally_flower_root" name="Variants" groups="sally_flower.group_flower_special"
                   action="sally_flower_variant_action"/>
 
     </data>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="sally_flower_report_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <t t-call="sally_flower_day4.sally_flower_report_document_outer">
+                                <t t-call="sally_flower_day4.sally_flower_report_document_inner"/>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+<!--            <h1>Hello World</h1>-->
+        </template>
+
+        <template id="sally_flower_report_document_outer">
+            <main>
+                <div class="text-danger">
+                </div>
+                <div class="text-info">
+                    <t t-out="0"/>
+                </div>
+            </main>
+        </template>
+
+        <template id="sally_flower_report_document_inner">
+            <!-- Use t-out directive to print the value of a variable -->
+            <h1 t-att-class="'text-danger' if o.is_watered else 'text-success'"
+                t-out="'Flower Name: ' + o.name" />
+
+            <h1 t-attf-class="text-{{'danger' if o.is_watered else 'success'}}"
+                t-out="'Flower Name: ' + o.name" />
+
+            <!-- Use t-if directive to show something conditionally -->
+            <h2 t-if="o.is_watered and o.serial_number">
+                Is Watered and has a serial number
+            </h2>
+            <h2 t-elif="o.is_watered">
+                Is Watered
+            </h2>
+            <h2 t-elif="o.serial_number">
+                Has serial number
+            </h2>
+            <h2 t-else="">
+                Nothing :(
+            </h2>
+
+            <t t-set="filtered_waterings"
+               t-value="o.watering_ids.filtered(lambda w: w.water_used > 10)"/>
+
+            <t t-foreach="filtered_waterings" t-as="watering">
+                <p t-out="watering.name" />
+            </t>
+            <p t-foreach="filtered_waterings" t-as="watering" t-out="watering.name"/>
+
+            <ul t-foreach="filtered_waterings" t-as="watering">
+                <li t-out="watering.water_used" />
+            </ul>
+        </template>
+
+    </data>
+</odoo>

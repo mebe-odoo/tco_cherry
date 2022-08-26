@@ -24,8 +24,13 @@
 
     # always loaded
     'data': [
+        # 'security/sally_flower_security.xml',
+        'security/ir.model.access.csv',
         'views/sally_flower_views.xml',
+        'report/report_sally_flower.xml',
         'data/ir_actions_server.xml',
+        'data/report_paperformat.xml',
+        'data/ir_actions_report.xml',
         'data/ir_cron.xml',
         'data/sally_flower.xml',
     ]

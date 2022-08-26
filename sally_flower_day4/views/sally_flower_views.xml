@@ -26,6 +26,9 @@
             <field name="model">sally.flower</field>
             <field name="inherit_id" ref="sally_flower.sally_flower_view_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//sheet/*" position="before">
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                </xpath>
                 <xpath expr="//sheet/group" position="before">
 
                     <div class="oe_button_box" name="button_box">
@@ -56,12 +59,25 @@
                                 icon="fa-external-link"
                                 class="oe_stat_button"
                                 type="action"/>
+
+                        <!-- A button that shows the waterings for the flower -->
+                        <button class="oe_stat_button" name="action_open_waterings"
+                                type="object" icon="fa-flag">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="watering_count"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Waterings
+                                </span>
+                            </div>
+                        </button>
                     </div>
-                    <h1 class="alert alert-success" role="alert">
-                        <field name="cron_message"/>
-                        <br/>
-                        <field name="full_name"/>
-                    </h1>
+<!--                    <h1 class="alert alert-success" role="alert">-->
+<!--                        <field name="cron_message"/>-->
+<!--                        <br/>-->
+<!--                        <field name="full_name"/>-->
+<!--                    </h1>-->
                 </xpath>
                 <xpath expr="//sheet" position="after">
                     <div class="oe_chatter">
@@ -70,9 +86,16 @@
                         <field name="message_ids"/>
                     </div>
                 </xpath>
+                <field name="name" position="after">
+                    <field name="is_watered" />
+                    <field name="serial_number" />
+                </field>
                 <field name="partner_ids" position="replace">
                     <group>
                         <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="watering_ids" widget="many2many_tags"/>
                     </group>
                 </field>
             </field>
@@ -96,7 +119,6 @@
                 <search string="Sally Flower">
                     <field name="common_name"/>
                     <field name="scientific_name"/>
-<!--                    <filter name="filter_date_today" string="Today" domain="[('date_today', '!=', False)]"/>-->
                 </search>
             </field>
         </record>

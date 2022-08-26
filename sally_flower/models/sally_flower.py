@@ -61,12 +61,7 @@ class FlowerMixin(models.AbstractModel):
 
 class SallyFlowerExtendedMixin(models.Model):
     _name = 'sally.flower'
-    _inherit = ['sally.flower', 'image.mixin', 'flower.mixin', 'website.published.mixin']
-
-    @api.depends_context('lang')
-    def _compute_website_url(self):
-        for record in self:
-            record.website_url = '/flowers/' + record.common_name
+    _inherit = ['sally.flower', 'image.mixin', 'flower.mixin',]
 
 # endregion
 

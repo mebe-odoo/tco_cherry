@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="flower_page" name="Flower Page">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <h1 class="mb-2" t-out="flower.name"/>
+                    <h2 class="mb-5" t-out="flower.flower_sequence"/>
+                    <form action="/flowers/create" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="text" name="name"  placeholder="Name"/>
+                        <input type="text" name="common_name" placeholder="Common Name"/>
+                        <input type="text" name="scientific_name" placeholder="Scientific Name"/>
+                        <input type="submit" value="Create Flower"/>
+                    </form>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

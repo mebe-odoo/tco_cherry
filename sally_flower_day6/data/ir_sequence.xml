@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequence for sally.flower -->
+        <record id="seq_sally_flower" model="ir.sequence">
+            <field name="name">Sally Flowers</field>
+            <field name="code">sally.flower</field>
+            <field name="prefix">FW</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_sally_flower_with_year" model="ir.sequence">
+            <field name="name">Sally Flowers</field>
+            <field name="code">sally.flower.year</field>
+            <field name="prefix">FW/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

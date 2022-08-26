@@ -7,7 +7,9 @@
             <field name="common_name">Orchid</field>
             <field name="scientific_name">Orchid</field>
             <field name="partner_id" ref="base.partner_admin"/>
-            <field name="partned_ids" eval=""/>
+            <field name="watering_ids" eval="[
+                    (0, 0, {'water_used': 10})
+                ]"/>
         </record>
 
     </data>

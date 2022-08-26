@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sally_flower_view_form" model="ir.ui.view">
+            <field name="name">sally_flower_view_form</field>
+            <field name="model">sally.flower</field>
+            <field name="inherit_id" ref="sally_flower.sally_flower_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <field name="is_published" widget="website_redirect_button"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

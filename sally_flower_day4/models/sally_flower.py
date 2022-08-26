@@ -9,6 +9,10 @@ class SallyFlower(models.Model):
     _name = 'sally.flower'
     _inherit = ['sally.flower', 'mail.thread']
 
+    serial_number = fields.Char('Serial Number', tracking=True)
+    watering_ids = fields.One2many('sally.flower.water', 'flower_id', string="Waterings")
+    watering_count = fields.Integer("Watering Count", compute="_compute_watering_count")
+
     is_watered = fields.Boolean('Is Watered', default=False)
     cron_message = fields.Char('Message')
 
@@ -165,6 +169,47 @@ class SallyFlower(models.Model):
         # res['name'] = 'Test 19'
         return res
 
+    def _compute_watering_count(self):
+        for flower in self:
+            flower.watering_count = len(flower.watering_ids)
+
+    def action_open_waterings(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Waterings',
+            'res_model': 'sally.flower.water',
+            'view_mode': 'tree,form',
+            'target': 'current',
+            'domain': [('id', 'in', self.watering_ids.ids)]
+        }
+
+    def water_flowers(self):
+        for flower in self:
+            flower.write({
+                'watering_ids': [
+                    # Empty our O2M field
+                    Command.clear(),
+                    (5, 0, 0),
+                    # Create a new sally.flower.water record and link it to the O2M field
+                    (0, 0, {'water_used': 10}),
+                    Command.create({'water_used': 10}),
+                    # Create a new sally.flower.water record and link it to the O2M field
+                    (1, 10, {'water_used': 20}),
+                    Command.update(10, {'water_used': 25}),
+                    # Delete the water record completely from the DB
+                    # (2, 10, 0),
+                    # Command.delete(10),
+                    # Remove the link to the water record from the flower's O2M field
+                    (3, 10, 0),
+                    Command.unlink(10),
+                    # Add the link to the water record to the flower's O2M field
+                    (4, 10, 0),
+                    Command.link(10),
+                    # Empty out the O2M field by removing the old references, and link a new set of waters
+                    # (6, 0, [1, 2, 3]),
+                    # Command.set([1, 2, 3]),
+                ]
+            })
     # @api.model_create_multi
     # def create(self, vals_list):
     #     for vals in vals_list:
